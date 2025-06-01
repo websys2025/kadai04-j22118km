@@ -7,6 +7,7 @@
     <body>
         <h1 id="vending-machine">自動販売機システム</h1>
         <table id="item_area" border="1"></table>
+
         <script>
             // 商品一覧を記録する連想配列の配列
             const items =  [
@@ -22,13 +23,13 @@
 
             // 商品用のクラス定義
             class Item {
-                static number = 1;
+                static number = 0;
                 constructor(name, price, stock) {
+                    Item.number++;
                     this.id = Item.number;
                     this.name = name;
                     this.price = price;
                     this.stock = stock;
-                    Item.number++;
                 }
 
                 // 商品一覧の表示関数
@@ -37,16 +38,19 @@
 
                     // 配列の内容を項目毎に出力
                     // 課題4-1. ここにコードを書く
+                    for(let i=0; i<list.length; i++){
+                        console.log("商品番号: " + list[i].id + ", 商品名: " + list[i].name + ",金額：" + list[i].price + ",在庫数：" + list[i].stock);
+                    }
                     console.log(""); // 空行の出力
                 }
-                
+
                 // 商品購入の関数
-                buyItem() {          
+                buyItem() {
                     if (this.stock >= 1) { 
                         console.log("商品番号: "+this.id+", 商品名: "+this.name+"を購入します。");
                         // 課題4-2. ここにコードを書く
                         // 購入による商品の在庫削減処理
-                        
+
                         // 課題4-3. ここにコードを書く
                         // 在庫用のエレメントを抽出し、HTML内の個数を更新
                     } else console.log(this.name+"は商品の在庫がないため購入できません。");
@@ -80,6 +84,7 @@
         </script>
     </body>
 </html>
+
 <!-- 
 期待される出力例
 -----------------
